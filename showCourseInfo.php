@@ -52,9 +52,9 @@
          				<td>" . $row["Index"]. "</td>
          				<td>" . $row["LengthRed"]. "</td>
          				<td>" . $row["LengthYellow"]. "</td>
-         				<td>" . ES . "</td>
-         				<td>" . S . "</td>
-         				<td>" . P . "</td>
+         				<td>" . 'ES' . "</td>
+         				<td>" . 'S' . "</td>
+         				<td>" . 'P' . "</td>
          			</tr>";
      		}
      		echo "</table>";

@@ -4,8 +4,14 @@
 		#course-select {
 			font-family: Helvetica;
 			width: 350px;
-			margin-left: 135px;
-			margin-bottom: 10px;
+			margin-left: 140px;
+			margin-bottom: 2px;
+		}	
+		#hcpInput {
+			font-family: Helvetica;
+			width: 350px;
+			margin-left: 140px;
+			margin-bottom: 5px;
 		}	
 	</style>
 	<script>
@@ -30,6 +36,11 @@
         		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         		xmlhttp.send("course="+str.value);
     		}
+		}
+		
+		function calculatePoints() {
+			var hcp = document.getElementById("hcp").value;
+			document.getElementById("demo").innerHTML = hcp;
 		}
 	</script>
 </head>
@@ -57,6 +68,13 @@
 			<noscript><input type="submit" value="Submit"></noscript>
 		</form>
 		<br/>
+		
+		<div id="hcpInput">
+			<input id="hcp" type="number"/>
+			<button onclick="calculatePoints()">Calc</button>
+			<p id="demo"></p>
+		</div>
+		
 		<div id="courseTable">
 			
 		</div>
