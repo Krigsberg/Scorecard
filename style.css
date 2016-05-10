@@ -1,0 +1,108 @@
+/*--------- Font ------------*/
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://weloveiconfonts.com/api/?family=fontawesome);
+/* fontawesome */
+[class*="fontawesome-"]:before {
+  font-family: 'FontAwesome', sans-serif;
+}
+
+/*--------- General layout ------------*/
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+/*--------- Body layout ------------*/
+body {
+    background: #F2F2F2;
+    font-family: 'Droid Sans', sans-serif;
+    line-height: 1;
+    font-size: 16px;    
+}
+
+/*--------- Group settings ------------*/
+.group:before, .group:after {
+    content: "";
+    display: table;
+} 
+.group:after {
+    clear: both;
+}
+.group {
+    zoom: 1;  /*For IE 6/7 (trigger hasLayout) */
+}
+
+table {
+  	color: #333;
+  	font: inherit;
+  	font-size: 12px;
+  	font-weight: 300;
+ 	text-align: center;
+  	line-height: 35px;
+  	border-spacing: 0;
+  	margin: 15px auto;
+  
+	width: 40%;    
+   	overflow: hidden;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;    
+}
+
+/*--------- Table head ------------*/
+thead tr:first-child {
+  	background: #78CFBF;
+  	color: #fff;
+  	border: none;
+  	line-height: 45px;
+}
+
+/*--------- Table body ------------*/
+tbody tr {
+	background: #fff;
+}
+tbody tr: hover {background-color: #ddd;}
+tbody tr: last-child {border-bottom: none;}
+tbody td {
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+}
+tbody td: last-child {border-bottom: none;}
+
+/*--------- Table foot ------------*/
+tfoot tr:first-child {
+  	background: #78CFBF;
+  	color: #fff;
+  	border: none;
+  	line-height: 45px;
+}
+
+tfoot td {
+	text-align: center;
+}
+
+.wrapper {
+    
+}	
+
+.scoreCardContainer {
+	width: 80%;
+    margin: 50px auto;
+    text-align: center;
+    padding: 10px;
+    padding-right: 0;
+}
+
+.scoreCardContainer .heading {
+    color: #9C9E9F;
+    text-transform: uppercase;
+    font-size: 16px;
+    margin-bottom: 15px;
+}

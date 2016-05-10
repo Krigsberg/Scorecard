@@ -1,37 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<style>
-	table, th, td {
-		border-radius: 10px;
-		background: #ECEBBD;
-		border-collapse: collapse;
-	}
-			
-	tr {
-		padding-top: 3px;
-		padding-left: 3px;
-	}
-			
-	th, td {
-		padding: 5px;
-		font-family: Helvetica;
-		text-align: center;
-	}
-</style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 	<?php
 		include 'connection.php';
 		$course = $_POST["course"];
+		$hcp = $_POST["hcp"];
 	
-		// Create select statement
 		$sql = "SELECT * FROM GolfCourse WHERE Course = '" .$course. "'";
 		$result = $conn->query($sql);
 
-		// Loop through result array
 		if ($result->num_rows > 0) {
-     		echo("<table>");
+     		echo("<table id='scoreCardTable'>");
+			// TABLE HEAD
+			echo "<thead>";
      		echo "	<tr>
      					<th>Hole</th>
      					<th>Par</th>
@@ -42,8 +26,10 @@
      					<th>Strokes</th>
      					<th>Points</th>
      				</tr>";
-					
-     		// Output data of each row
+			echo "</thead>";
+			
+			// TABLE BODY
+			echo "<tbody>";
      		while ($row = $result->fetch_assoc()) {
          		echo "
          			<tr>
@@ -53,10 +39,25 @@
          				<td>" . $row["LengthRed"]. "</td>
          				<td>" . $row["LengthYellow"]. "</td>
          				<td>" . 'ES' . "</td>
-         				<td>" . 'S' . "</td>
-         				<td>" . 'P' . "</td>
+         				<td>" . '<input type="number" name="strokes" min="1" max="20" maxlength="2" size="3" value="0">' . "</td>
+         				<td>" . $hcp . "</td>
          			</tr>";
      		}
+			echo "</tbody>";
+			
+			// TABLE FOOTER
+			echo "<tfoot>";
+			echo "	<tr>
+     					<td>" . '' . "</td>
+     					<td>" . '72' . "</td>
+     					<td>" . '' . "</td>
+     					<td>" . '9500' . "</td>
+     					<td>" . '9850' . "</td>
+     					<td>" . '18' . "</td>
+     					<td>" . 'SUM' . "</td>
+     					<td>" . 'SUM' . "M</td>
+     				</tr>";
+			echo "</tfoot>";
      		echo "</table>";
 		} else {
 			echo "$course";

@@ -1,22 +1,12 @@
 <html>
 <head>
-	<style>
-		#course-select {
-			font-family: Helvetica;
-			width: 350px;
-			margin-left: 140px;
-			margin-bottom: 2px;
-		}	
-		#hcpInput {
-			font-family: Helvetica;
-			width: 350px;
-			margin-left: 140px;
-			margin-bottom: 5px;
-		}	
-	</style>
+	<link rel="stylesheet" href="style.css">
 	<script>
-		function showAvailableCourses(str) {
-    		if (str.value == "-") {
+		function showAvailableCourses() {
+			var hcp = document.getElementById("hcp").value;
+			var course = document.getElementById("selCourse").value;
+			
+    		if (course == "-") {
         		document.getElementById("courseTable").innerHTML = "";
         		return;
     		} else { 
@@ -34,49 +24,49 @@
         		};
         		xmlhttp.open("POST", "showCourseInfo.php", true);
         		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        		xmlhttp.send("course="+str.value);
+        		xmlhttp.send("course="+course + "&hcp="+hcp);
     		}
-		}
-		
-		function calculatePoints() {
-			var hcp = document.getElementById("hcp").value;
-			document.getElementById("demo").innerHTML = hcp;
 		}
 	</script>
 </head>
 <body>
-	<div id="course-select">
-		<form id="selectCourseForm">
-			<select name="courseDropDown" onchange="showAvailableCourses(this);">
-			<?php
-				include 'connection.php';
+	<div class="wrapper">
+		<div class="scoreCardContainer group">
+			<h1 class="heading">
+                Score card
+            </h1>
+			<form id="selectCourseForm">
+				<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses();">
+				<?php
+					include 'connection.php';
 
-				// Add first 'blank' option
-				echo "<option value='-'>-</option>";
+					// Add first 'blank' option
+					echo "<option value='-'>-</option>";
 
-				// Create select statement
-				$sql = "SELECT DISTINCT Course FROM GolfCourse ORDER BY Course asc";
-				$result = $conn->query($sql);
-				while ($row = $result->fetch_array()) {
-					$Course=$row["Course"];
-					echo '<option value="'.$Course.'">'.$Course.'</option>'; 
-				}
+					// Create select statement
+					$sql = "SELECT DISTINCT Course FROM GolfCourse ORDER BY Course asc";
+					$result = $conn->query($sql);
+					while ($row = $result->fetch_array()) {
+						$Course=$row["Course"];
+						echo '<option value="'.$Course.'">'.$Course.'</option>'; 
+					}	
 				
-				$conn->close();
-			?>
-			</select>
-			<noscript><input type="submit" value="Submit"></noscript>
-		</form>
-		<br/>
+					$conn->close();
+				?>
+				</select>
+				<noscript><input type="submit" value="Submit"></noscript>
+			</form>
+			<br/>
 		
-		<div id="hcpInput">
-			<input id="hcp" type="number"/>
-			<button onclick="calculatePoints()">Calc</button>
-			<p id="demo"></p>
-		</div>
-		
-		<div id="courseTable">
+			<div id="hcpInput">
+				<input id="hcp" type="number"/>
+				<button onclick="showAvailableCourses()">Calc</button>
+				<p id="demo"></p>
+			</div>
 			
+			<div id="courseTable">
+				
+			</div>
 		</div>
 	</div>
 </body>
