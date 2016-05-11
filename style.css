@@ -69,12 +69,11 @@ tbody tr {
 	background: #fff;
 }
 tbody tr: hover {background-color: #ddd;}
-tbody tr: last-child {border-bottom: none;}
 tbody td {
 	border-bottom: 1px solid #ddd;
 	text-align: center;
 }
-tbody td: last-child {border-bottom: none;}
+tbody: last-child {border-bottom: none;}
 
 /*--------- Table foot ------------*/
 tfoot tr:first-child {

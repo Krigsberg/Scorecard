@@ -1,7 +1,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css">
-	<script>
+	<script type="text/javascript">
 		function showAvailableCourses() {
 			var hcp = document.getElementById("hcp").value;
 			var course = document.getElementById("selCourse").value;
@@ -27,6 +27,56 @@
         		xmlhttp.send("course="+course + "&hcp="+hcp);
     		}
 		}
+		
+		function calculateTotalPoints() {
+			var table = document.getElementById("scoreCardTableBody");
+			var totalPoints = 0;
+			var totalScore = 0;
+			
+			for (var i = 0; row = table.rows[i]; i++) {
+				var par = parseInt(row.cells[3].innerHTML, 10);
+				var extra = parseInt(row.cells[5].innerHTML, 10);
+				var strokes = parseInt(row.cells[6].children[0].value, 10);
+				
+				var points = 0;
+				var newPar = par + extra;
+				var score = newPar - strokes;
+				switch(score) {
+    				case -1:
+        				points = 1;
+        				break;
+    				case 0:
+        				points = 2;
+        				break;
+    				case 1:
+        				points = 3;
+        				break;
+    				case 2:
+        				points = 4;
+        				break;
+    				case 3:
+        				points = 5;
+        				break;
+    				case 4:
+        				points = 6;
+        				break;
+    				case 5:
+        				points = 7;
+        				break;
+    				default:
+        				points = 0;
+				}
+				
+				row.cells[7].innerHTML = points;
+				totalPoints += points;
+				totalScore += strokes;
+			}
+			
+			var tableFoot = document.getElementById("scoreCardTableFoot");
+			var tableFootRow = tableFoot.rows[0];
+			tableFootRow.cells[7].innerHTML = totalPoints;
+			tableFootRow.cells[6].innerHTML = totalScore;
+		}
 	</script>
 </head>
 <body>
@@ -36,7 +86,7 @@
                 Score card
             </h1>
 			<form id="selectCourseForm">
-				<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses();">
+				<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses()">
 				<?php
 					include 'connection.php';
 
@@ -60,13 +110,16 @@
 		
 			<div id="hcpInput">
 				<input id="hcp" type="number"/>
-				<button onclick="showAvailableCourses()">Calc</button>
-				<p id="demo"></p>
+				<button onclick="showAvailableCourses()">Get Strokes</button>
 			</div>
 			
-			<div id="courseTable">
+			<form id="tableSubmit" action="" method="POST">
+				<div id="courseTable">
 				
-			</div>
+				</div>
+				<!-- <input id="calcTotals" type="submit" value="Calc Totals"> -->
+				<button name="calcTotals" value="Calc Totals" type="button" onclick="calculateTotalPoints()">Calc Totals</button>
+			</form>
 		</div>
 	</div>
 </body>
