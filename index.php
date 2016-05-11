@@ -8,6 +8,7 @@
 			
     		if (course == "-") {
         		document.getElementById("courseTable").innerHTML = "";
+        		hide('buttonTotPoints');
         		return;
     		} else { 
         		if (window.XMLHttpRequest) {
@@ -77,6 +78,24 @@
 			tableFootRow.cells[7].innerHTML = totalPoints;
 			tableFootRow.cells[6].innerHTML = totalScore;
 		}
+		
+		function hide(divID) {
+			var item = document.getElementById(divID);
+			if (item) {
+    			if (item.className=='ph-floatUnhidden') {
+    				item.className = 'ph-floatHidden';
+    			}
+			}
+		}
+		
+		function unhide(divID) {
+			var item = document.getElementById(divID);
+			if (item) {
+    			if (item.className=='ph-floatHidden') {
+        			item.className = 'ph-floatUnhidden';
+    			}
+			}
+		}
 	</script>
 </head>
 <body>
@@ -108,17 +127,25 @@
 			</form>
 			<br/>
 		
-			<div id="hcpInput">
-				<input id="hcp" type="number"/>
-				<button onclick="showAvailableCourses()">Get Strokes</button>
+			<div id="hcpInputWrapper">
+				<div id="hcpInputTxt">
+					<h2>Input hcp</h2>
+				</div>
+				<div id="hcpInput">
+					<input id="hcp" type="number" min="1" max="2"/>
+				</div>
+				<div id="hcpInputBtn" class="ph-float">
+					<button name="getStrokes" value="Get Strokes" class="ph-button ph-btn-green" type="button" onclick="showAvailableCourses(); unhide('buttonTotPoints');">Get Strokes</button>
+				</div>
 			</div>
 			
 			<form id="tableSubmit" action="" method="POST">
 				<div id="courseTable">
 				
 				</div>
-				<!-- <input id="calcTotals" type="submit" value="Calc Totals"> -->
-				<button name="calcTotals" value="Calc Totals" type="button" onclick="calculateTotalPoints()">Calc Totals</button>
+				<div id="buttonTotPoints" class="ph-floatHidden">
+					<button name="calcTotals" value="Calc Totals" class="ph-button ph-btn-green" type="button" onclick="calculateTotalPoints()">Calc Totals</button>
+				</div>
 			</form>
 		</div>
 	</div>

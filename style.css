@@ -87,10 +87,6 @@ tfoot td {
 	text-align: center;
 }
 
-.wrapper {
-    
-}	
-
 .scoreCardContainer {
 	width: 80%;
     margin: 50px auto;
@@ -105,3 +101,62 @@ tfoot td {
     font-size: 16px;
     margin-bottom: 15px;
 }
+
+.ph-floatHidden {
+    display:none;
+}
+
+.ph-floatUnhidden {
+    display:block;
+}
+
+/*-------- HCP INPUT ------------*/
+#hcpInputWrapper {
+	margin: 50px auto;
+	text-align: center;
+}
+
+#hcpInputTxt {
+	float: left;
+}
+
+#hcpInput {
+	float: left;
+}
+
+#hcpInputBtn {
+	float: left;
+}
+
+/*----------- BUTTONS ------------*/
+.ph-button {
+    border-radius: 5px;
+
+    color: #FFFFFF;	   
+    cursor: pointer;
+    display: inline-block;
+    overflow: hidden;
+
+    text-align: center;
+    text-decoration: none;
+    text-overflow: ellipsis;
+
+    transition: all 200ms ease-in-out 0s;
+    white-space: nowrap;	
+    padding: 10px 20px 9px;
+
+    font: inherit;
+    font-size: 12px;
+    font-style: normal;
+}
+
+.ph-btn-green {
+    border-color: #3AC162;
+	background-color: #78CFBF;
+}
+
+.ph-btn-green:hover, .ph-btn-green:focus, .ph-btn-green:active {
+    background-color: #78CFBF;
+    border-color: #3AC162;    
+}
+
