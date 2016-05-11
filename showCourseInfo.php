@@ -102,7 +102,7 @@
          				<td>" . $row["Par"]. "</td>
          				<td>" . $row["Index"]. "</td>
          				<td>" . $extraStrokePerHoleArray[$row["Hole"]] . "</td>
-         				<td>" . '<input type="number" name="strokes" min="1" max="20" maxlength="2" size="3" value="5">' . "</td>
+         				<td>" . '<input type="number" name="strokes" min="1" max="20" maxlength="2" size="3" value="0">' . "</td>
          				<td>" . 0 . "</td>
          			</tr>";
      		}
@@ -118,7 +118,7 @@
      					<td>" . '' . "</td>
      					<td>" . $strokes . "</td>
      					<td>" . '0' . "</td>
-     					<td>" . '0' . "M</td>
+     					<td>" . '0' . "</td>
      				</tr>";
 			echo "</tfoot>";
      		echo "</table>";
