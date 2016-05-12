@@ -1,6 +1,7 @@
 <html>
 <head>
 	<link rel="stylesheet" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript">
 		function showAvailableCourses() {
 			var hcp = document.getElementById("hcp").value;
@@ -40,32 +41,34 @@
 				var strokes = parseInt(row.cells[6].children[0].value, 10);
 				
 				var points = 0;
-				var newPar = par + extra;
-				var score = newPar - strokes;
-				switch(score) {
-    				case -1:
-        				points = 1;
-        				break;
-    				case 0:
-        				points = 2;
-        				break;
-    				case 1:
-        				points = 3;
-        				break;
-    				case 2:
-        				points = 4;
-        				break;
-    				case 3:
-        				points = 5;
-        				break;
-    				case 4:
-        				points = 6;
-        				break;
-    				case 5:
-        				points = 7;
-        				break;
-    				default:
-        				points = 0;
+				if (strokes != 0) {
+					var newPar = par + extra;
+					var score = newPar - strokes;
+					switch(score) {
+    					case -1:
+        					points = 1;
+        					break;
+    					case 0:
+        					points = 2;
+        					break;
+    					case 1:
+        					points = 3;
+        					break;
+    					case 2:
+        					points = 4;
+        					break;
+    					case 3:
+        					points = 5;
+        					break;
+    					case 4:
+        					points = 6;
+        					break;
+    					case 5:
+        					points = 7;
+        					break;
+    					default:
+        					points = 0;
+					}
 				}
 				
 				row.cells[7].innerHTML = points;
@@ -104,38 +107,45 @@
 			<h1 class="heading">
                 Score card
             </h1>
-			<form id="selectCourseForm">
-				<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses()">
-				<?php
-					include 'connection.php';
+            <div id="selectCourseWrapper">
+            	<div id="selCourseTxt">
+					<h2 class="selCourseHeader">Course</h2>
+				</div>
+				<div id="selCourseDropDown">
+					<form id="selectCourseForm">
+						<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses()">
+						<?php
+							include 'connection.php';
 
-					// Add first 'blank' option
-					echo "<option value='-'>-</option>";
+							// Add first 'blank' option
+							echo "<option value='-'>-</option>";
 
-					// Create select statement
-					$sql = "SELECT DISTINCT Course FROM GolfCourse ORDER BY Course asc";
-					$result = $conn->query($sql);
-					while ($row = $result->fetch_array()) {
-						$Course=$row["Course"];
-						echo '<option value="'.$Course.'">'.$Course.'</option>'; 
-					}	
+							// Create select statement
+							$sql = "SELECT DISTINCT Course FROM GolfCourse ORDER BY Course asc";
+							$result = $conn->query($sql);
+							while ($row = $result->fetch_array()) {
+								$Course=$row["Course"];
+								echo '<option value="'.$Course.'">'.$Course.'</option>'; 
+							}	
 				
-					$conn->close();
-				?>
-				</select>
-				<noscript><input type="submit" value="Submit"></noscript>
-			</form>
+							$conn->close();
+						?>
+						</select>
+						<noscript><input type="submit" value="Submit"></noscript>
+					</form>
+				</div>
+			</div>
 			<br/>
 		
 			<div id="hcpInputWrapper">
 				<div id="hcpInputTxt">
-					<h2>Input hcp</h2>
+					<h2 class="hcpInputHeader">Input hcp</h2>
 				</div>
 				<div id="hcpInput">
-					<input id="hcp" type="number" min="1" max="2"/>
+					<input name="inputHcp" id="hcp" type="number" value="0.0" min="0" max="36"/>
 				</div>
 				<div id="hcpInputBtn" class="ph-float">
-					<button name="getStrokes" value="Get Strokes" class="ph-button ph-btn-green" type="button" onclick="showAvailableCourses(); unhide('buttonTotPoints');">Get Strokes</button>
+					<button name="getStrokes" value="Get Strokes" class="ph-button-strokes ph-btn-green" type="button" onclick="showAvailableCourses(); unhide('buttonTotPoints');">Get Strokes</button>
 				</div>
 			</div>
 			
@@ -144,7 +154,7 @@
 				
 				</div>
 				<div id="buttonTotPoints" class="ph-floatHidden">
-					<button name="calcTotals" value="Calc Totals" class="ph-button ph-btn-green" type="button" onclick="calculateTotalPoints()">Calc Totals</button>
+					<button name="calcTotals" value="Calc Totals" class="ph-button-calc ph-btn-green" type="button" onclick="calculateTotalPoints()">Calc Totals</button>
 				</div>
 			</form>
 		</div>

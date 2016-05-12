@@ -77,11 +77,11 @@
 			echo "<thead>";
      		echo "	<tr>
      					<th>Hole</th>
-     					<th>Length (Red)</th>
-     					<th>Length (Yellow)</th>
+     					<th> <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='10' height='10'> <circle cx='4' cy='4' r='4' fill='#ff0000' /> </svg> </th>
+     					<th> <svg xmlns='http://www.w3.org/2000/svg' version='1.1' width='10' height='10'> <circle cx='4' cy='4' r='4' fill='#ffff00' /> </svg> </th>
      					<th>Par</th>
      					<th>Index</th>
-     					<th>Extra strokes</th>
+     					<th>+ Strokes</th>
      					<th>Strokes</th>
      					<th>Points</th>
      				</tr>";
