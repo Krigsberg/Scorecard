@@ -159,5 +159,9 @@
 			</form>
 		</div>
 	</div>
+	
+	<!-- <footer>
+  		<p>Copyright 2016</p>
+	</footer> -->
 </body>
 </html>
