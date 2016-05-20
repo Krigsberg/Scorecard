@@ -1,5 +1,11 @@
 <html>
 <head>
+	<!-- <title>Golf point calculator - Easy score card and slope keeper online | golf-points.com </title> -->
+	<title>Golf score kalkylator - Digitalt scorekort och slope online | golf-points.com </title>
+	<meta name=”Description” CONTENT=”
+		Trött på att glömma scorekort och att kolla upp din slope innan golfrundan?  Med denna sida väljer du bana, fyller i ditt handicap och får ett snyggt och enkelt scorekort med extraslag beräknat.
+		När golfrundan är klar räknas poäng och slag ihop åt dig. Stöd för TopTee och UNIPEG.”>
+	
 	<link rel="stylesheet" href="style.css">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript">
@@ -105,13 +111,13 @@
 	<div class="wrapper">
 		<div class="scoreCardContainer group">
 			<h1 class="heading">
-                Score card
+                Scorekort
             </h1>
             <div id="selectCourseWrapper">
             	<div id="selCourseTxt">
-					<h2 class="selCourseHeader">Course</h2>
+					<h2 class="selCourseHeader">Golfbana</h2>
 				</div>
-				<div id="selCourseDropDown">
+				<div id="selCourseDropDown" itemscope itemtype="http://schema.org/GolfCourse">
 					<form id="selectCourseForm">
 						<select id="selCourse" name="courseDropDown" onchange="showAvailableCourses()">
 						<?php
@@ -139,7 +145,7 @@
 		
 			<div id="hcpInputWrapper">
 				<div id="hcpInputTxt">
-					<h2 class="hcpInputHeader">Input hcp</h2>
+					<h2 class="hcpInputHeader">Handicap</h2>
 				</div>
 				<div id="hcpInput">
 					<input name="inputHcp" id="hcp" type="number" value="0.0" min="0" max="36"/>
